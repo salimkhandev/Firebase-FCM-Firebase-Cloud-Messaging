@@ -13,22 +13,20 @@ firebase.initializeApp({
     measurementId: "G-HL2TYM3QF6"
 });
 
-// Retrieve an instance of Firebase Messaging so that it can handle background
-// messages.
+
+
 const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage((payload) => {
-    console.log(
-        '[firebase-messaging-sw.js] Received background message ',
-        payload
-    );
-    // Customize notification here
-    const notificationTitle = payload.notification.title;
-    const notificationOptions = {
-        body: payload.notification.body,
-        image: payload.notification.image,
-      
-    };
+    console.log('Received background message:', payload);
 
-    self.registration.showNotification(notificationTitle, notificationOptions);
+    // // Only show a notification if there's no notification field (i.e., FCM won't handle it)
+    // if (!payload.notification && payload.data) {
+    //     const notificationTitle = payload.data.title || 'Default Title';
+    //     const notificationOptions = {
+    //         body: payload.data.body || 'Default Body',
+    //         icon: '/icon.png',
+    //     };
+    //     return self.registration.showNotification(notificationTitle, notificationOptions);
+    // }
 });

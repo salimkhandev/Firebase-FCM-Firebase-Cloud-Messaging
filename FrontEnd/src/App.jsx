@@ -21,6 +21,7 @@ const App=()=>{
             {/* add a copy button */}
             <button onClick={()=>{
                 navigator.clipboard.writeText(token);
+                
             }}>Copy Token</button>
             <p>Token: {token}</p>
             <button onClick={generateToken}>Generate Token</button>
